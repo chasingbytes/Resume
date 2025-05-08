@@ -114,8 +114,9 @@ st.write(
 # ---- Chat bot assistant -----
 
 # load API key
-load_dotenv()
-client = OpenAI(api_key=os.getenv("OPEN_API_KEY"))
+#load_dotenv()
+#client = OpenAI(api_key=os.getenv("OPEN_API_KEY"))
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 with st.sidebar:
     st.markdown("### 💬 Ask Albert's Resume Assistant")
