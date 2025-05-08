@@ -1,0 +1,12 @@
+[theme]
+# primary color for elements
+primaryColor = "#d33682"
+
+# background color for main content area
+backgroundColor = "#002b36"
+
+# background color used for sidebar
+secondaryBackgroundColor = "#586e75"
+
+# color used for text
+textColor = "fff"
