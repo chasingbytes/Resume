@@ -9,8 +9,12 @@ from dotenv import load_dotenv
 # ---- path settings ----
 current_dir = Path(__file__).parent if "__file__" in locals() else Path.cwd()
 css_file = current_dir / "styles" / "main.css"
-resume_file = current_dir / "assets" / "Resume2024.pdf"
+resume_file = current_dir / "assets" / "Resume2025.pdf"
 profile_pic = current_dir / "assets" / "profile-pic.png"
+capstone_path = current_dir / "assets" / "CAPSTONE_report.pdf"
+with open(capstone_path, "rb") as f:
+    capstone_data = f.read()
+
 
 # ---- general settings ----
 page_title = "Digital CV | Albert Shilling"
@@ -51,10 +55,27 @@ with col2:
     st.write(":mailbox:", email)
 
 # ---- social links -----
-st.write("#")
-cols = st.columns(len(social_media))
-for index, (platform, link) in enumerate(social_media.items()):
-    cols[index].write(f"[{platform}]({link})")
+# Custom columns for buttons and links
+col1, col2, col3, col4 = st.columns(4)
+
+# Assign social links manually to the center columns
+col2.markdown(f"[Github]({social_media['Github']})")
+col3.markdown(f"[LinkedIn]({social_media['LinkedIn']})")
+
+st.write("---")
+# ---- Capstone report -----
+# Create 3 columns: left spacer, center, right spacer
+left_col, center_col, right_col = st.columns([1, 2, 1])
+
+with center_col:
+    st.download_button(
+        label="Decision Trees vs. Neural Networks  Which one for predictions?",
+        data=capstone_data,
+        file_name="CAPSTONE_report.pdf",
+        mime="application/pdf"
+    )
+
+
 st.write("---")
 
 # ---- experience & qualifications ----
@@ -114,9 +135,9 @@ st.write(
 # ---- Chat bot assistant -----
 
 # load API key
-#load_dotenv()
-#client = OpenAI(api_key=os.getenv("OPEN_API_KEY"))
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+load_dotenv()
+client = OpenAI(api_key=os.getenv("OPEN_API_KEY"))
+#client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 with st.sidebar:
     st.markdown("### 💬 Ask Albert's Resume Assistant")
