@@ -17,7 +17,7 @@ with open(capstone_path, "rb") as f:
 
 
 # ---- general settings ----
-page_title = "Digital CV | Albert Shilling"
+page_title = "Resume | Albert Shilling"
 page_icon = ":wave:"
 name = "Albert Shilling"
 description = "B.S. Data Science & Analytics, assisting enterprises by supporting data-driven decision making."
