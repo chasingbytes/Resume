@@ -69,7 +69,7 @@ left_col, center_col, right_col = st.columns([1, 2, 1])
 
 with center_col:
     st.download_button(
-        label="Decision Trees vs. Neural Networks  Which one for predictions?",
+        label="Decision Trees vs. Neural Networks:  Which one for predictions?",
         data=capstone_data,
         file_name="CAPSTONE_report.pdf",
         mime="application/pdf"
@@ -137,12 +137,11 @@ st.write(
 # load API key
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPEN_API_KEY"))
-#client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 with st.sidebar:
     st.markdown("### 💬 Ask Albert's Resume Assistant")
     st.markdown("*Try asking:*")
-    st.markdown("- What are your top skills?\n- What was your capstone?\n- Any experience with Streamlit?")
+    st.markdown("- What are your top skills?\n- What was your capstone?\n- Any experience with Machine Learning?")
 
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = []
@@ -154,10 +153,10 @@ with st.sidebar:
         system_prompt = """
         You are a helpful assistant that answers questions about Albert Shilling.
 
-        Albert is a Data Scientist with a B.S. in Data Science & Analytics from FAU.
+        Albert is a recent graduate from Florida Atlantic University with a B.S. in Data Science & Analytics.
         He specializes in machine learning, Python, XGBoost, LSTMs, and Streamlit.
-        He built a car wash predictor using 3 years of weather data and deployed it via Streamlit.
-        He's also automated customer support emails using GPT and the Gmail API.
+        He built a car wash predictor using 3 years of weather data and deployed it via Streamlit, with version 1.0 used by the Parkland location at Rising Tide Car Wash. Version 2.0 is being built currently to support operations company wide-across all three stores. A pdf version is also availible to download a full report on this from my resume page titled: "Decision Trees vs Neural Networks: Which one for predictions".
+        He's also automated customer support emails using GPT and the Gmail API while working as Rising Tide Car Wash's Operations Analyst.
         """
 
         messages = [
