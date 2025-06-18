@@ -83,7 +83,7 @@ st.write("#")
 st.subheader("Experience & Qualifications")
 st.write(
     """
-    - ➤ Developed and implemented a predictive model for Rising Tide Car Wash to forecast daily customer traffic using 3 years of historical data  
+    - ➤ Developed and implemented a predictive model for Rising Tide Car Wash to forecast daily customer traffic using 3 years of historical data, currently being used in operations at the Parkland location. Version 2.0 is currently in production where it will support all three locations. 
     - ➤ Built an automated email response system using a customized GPT model integrated with the Gmail API  
     - ➤ Experience in data mining, neural networks, machine learning classifiers, and predictive statistical programming  
     - ➤ Proficient in Python, C++, SQL, and Excel; strong hands-on learner  
