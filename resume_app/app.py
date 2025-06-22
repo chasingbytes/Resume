@@ -29,7 +29,7 @@ social_media = {
 projects = {
     ":blue car: Rising Tide Car Wash daily customer predictor": "https://risingtide-predictor.streamlit.app/",
 }
-st.set_page_config(page_title=page_title, page_icon=page_icon)
+st.set_page_config(page_title=page_title, page_icon=page_icon, layout="wide")
 
 # ---- load CSS ----
 with open(css_file) as f:
