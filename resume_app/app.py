@@ -5,10 +5,7 @@ from PIL import Image
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
-# test 
-with st.sidebar:
-    st.markdown("### 👋 This is the sidebar.")
-    st.write("If you see this, sidebar is rendering properly.")
+
 # ---- path settings ----
 current_dir = Path(__file__).parent if "__file__" in locals() else Path.cwd()
 css_file = current_dir / "styles" / "main.css"
@@ -76,8 +73,8 @@ with st.sidebar:
         st.markdown(f"**You:** {q}")
         st.markdown(f"**Albert's Assistant:** {a}") 
 # ---- load CSS ----
-with open(css_file) as f:
-    st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
+# with open(css_file) as f:
+   # st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
 with open(resume_file, "rb") as pdf_file:
     PDFbyte = pdf_file.read()
 profile_pic = Image.open(profile_pic)
