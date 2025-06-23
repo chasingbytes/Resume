@@ -30,16 +30,6 @@ projects = {
     ":blue car: Rising Tide Car Wash daily customer predictor": "https://risingtide-predictor.streamlit.app/",
 }
 st.set_page_config(page_title=page_title, page_icon=page_icon, layout="wide")
-# Hide Streamlit general header
-hide_streamlit_style = """
-    <style>
-        #MainMenu {visibility: hidden;}
-        footer {visibility: hidden;}
-        header {visibility: hidden;}
-    </style>
-"""
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
 
 # ---- Chat bot assistant -----
 
