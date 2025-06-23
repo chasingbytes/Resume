@@ -74,10 +74,7 @@ with st.sidebar:
     # Show chat history in the sidebar
     for q, a in reversed(st.session_state.chat_history):
         st.markdown(f"**You:** {q}")
-        st.markdown(f"**Albert's Assistant:** {a}")
-    if not st.session_state.chat_history and not user_query:
-    st.markdown("_I'm here to answer questions about Albert!_")
-        
+        st.markdown(f"**Albert's Assistant:** {a}") 
 # ---- load CSS ----
 with open(css_file) as f:
     st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
