@@ -30,7 +30,49 @@ projects = {
     ":blue car: Rising Tide Car Wash daily customer predictor": "https://risingtide-predictor.streamlit.app/",
 }
 st.set_page_config(page_title=page_title, page_icon=page_icon, layout="wide")
+# ---- Chat bot assistant -----
 
+# load API key
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+
+with st.sidebar:
+    st.markdown("### 💬 Ask Albert's Resume Assistant")
+    st.markdown("*Try asking:*")
+    st.markdown("- What are your top skills?\n- What was your capstone?\n- Any experience with Machine Learning?")
+
+    if "chat_history" not in st.session_state:
+        st.session_state.chat_history = []
+
+    user_query = st.text_input("Ask something about Albert:")
+
+    if user_query:
+        # Your personal summary prompt
+        system_prompt = """
+        You are a helpful assistant that answers questions about Albert Shilling.
+
+        Albert is a recent graduate from Florida Atlantic University with a B.S. in Data Science & Analytics.
+        He specializes in machine learning, Python, XGBoost, LSTMs, and Streamlit.
+        He built a car wash predictor using 3 years of weather data and deployed it via Streamlit, with version 1.0 used by the Parkland location at Rising Tide Car Wash. Version 2.0 is being built currently to support operations company wide-across all three stores. A pdf version is also availible to download a full report on this from my resume page titled: "Decision Trees vs Neural Networks: Which one for predictions".
+        He's also automated customer support emails using GPT and the Gmail API while working as Rising Tide Car Wash's Operations Analyst.
+        """
+
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_query}
+        ]
+
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",  # or "gpt-4o" if available
+            messages=messages
+        )
+        reply = response.choices[0].message.content
+        st.session_state.chat_history.append((user_query, reply))
+
+    # Show chat history in the sidebar
+    for q, a in reversed(st.session_state.chat_history):
+        st.markdown(f"**You:** {q}")
+        st.markdown(f"**Albert's Assistant:** {a}")
+        
 # ---- load CSS ----
 with open(css_file) as f:
     st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
@@ -131,46 +173,3 @@ st.write(
     - 🌟 Support a high-functioning, inclusive work environment and uphold service quality standards  
     """
 )
-
-# ---- Chat bot assistant -----
-
-# load API key
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
-
-with st.sidebar:
-    st.markdown("### 💬 Ask Albert's Resume Assistant")
-    st.markdown("*Try asking:*")
-    st.markdown("- What are your top skills?\n- What was your capstone?\n- Any experience with Machine Learning?")
-
-    if "chat_history" not in st.session_state:
-        st.session_state.chat_history = []
-
-    user_query = st.text_input("Ask something about Albert:")
-
-    if user_query:
-        # Your personal summary prompt
-        system_prompt = """
-        You are a helpful assistant that answers questions about Albert Shilling.
-
-        Albert is a recent graduate from Florida Atlantic University with a B.S. in Data Science & Analytics.
-        He specializes in machine learning, Python, XGBoost, LSTMs, and Streamlit.
-        He built a car wash predictor using 3 years of weather data and deployed it via Streamlit, with version 1.0 used by the Parkland location at Rising Tide Car Wash. Version 2.0 is being built currently to support operations company wide-across all three stores. A pdf version is also availible to download a full report on this from my resume page titled: "Decision Trees vs Neural Networks: Which one for predictions".
-        He's also automated customer support emails using GPT and the Gmail API while working as Rising Tide Car Wash's Operations Analyst.
-        """
-
-        messages = [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_query}
-        ]
-
-        response = client.chat.completions.create(
-            model="gpt-3.5-turbo",  # or "gpt-4o" if available
-            messages=messages
-        )
-        reply = response.choices[0].message.content
-        st.session_state.chat_history.append((user_query, reply))
-
-    # Show chat history in the sidebar
-    for q, a in reversed(st.session_state.chat_history):
-        st.markdown(f"**You:** {q}")
-        st.markdown(f"**Albert's Assistant:** {a}")
