@@ -39,7 +39,7 @@ client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 with st.sidebar:
     st.markdown("### 💬 Ask Albert's Resume Assistant")
     st.markdown("*Try asking:*")
-    st.markdown("- What are your top skills?\n- What was your capstone?\n- Any experience with Machine Learning?")
+    st.markdown("- What are your top skills?\n- What was your capstone?\n- What apps has Albert developed?")
 
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = []
